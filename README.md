@@ -19,6 +19,9 @@ return [
 set with section:  
 ```php
 Yii::$app->setting->set('package.name', 'cszchen/setting');
+```
+or
+```php
 Yii::$app->setting->set('author', 'cszchen <me@csz.link>', 'package');
 ```
 get the setting;  

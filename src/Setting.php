@@ -56,6 +56,21 @@ class Setting extends Component
     }
 
     /**
+     * Store a section settings
+     * @param $section
+     * @param $value
+     * @return bool
+     */
+    public function setSection($section, $value)
+    {
+        $success = true;
+        foreach ($value as $key => $value) {
+            $success = $success && $this->set($key, $value, $section);
+        }
+        return $success;
+    }
+
+    /**
      * check the key exists.
      * @param $key
      * @return bool

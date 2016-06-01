@@ -75,6 +75,22 @@ class SettingTest extends PHPUnit_Framework_TestCase
         $cacheData = Yii::$app->cache->get(Yii::$app->setting->cacheKey);
         $this->assertTrue(!$cacheData);
     }
+    
+    public function testSetSection()
+    {
+        $package = [
+            'name' => 'cszchen/yii2-setting',
+            'desc' => ''
+        ];
+        $success = Yii::$app->setting->setSection('package', $package);
+        $this->assertTrue(!$success);
+
+        Yii::$app->set('setting', 'cszchen\setting\Setting');
+        $success = Yii::$app->setting->setSection('package', $package);
+        $this->assertTrue($success);
+
+        $this->assertEquals($package, Yii::$app->setting->get('package.*'));
+    }
 
     public function settings()
     {

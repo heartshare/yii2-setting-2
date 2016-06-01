@@ -48,7 +48,11 @@ class Setting extends Component
     {
         list($section, $key) = $this->formatKey($key, $section);
         $success = false;
-        foreach ($this->storages as $storage) {
+        $storages = $this->getStorages($section);
+        if (!$storages) {
+            return false;
+        }
+        foreach ($this->getStorages($section) as $storage) {
             $success = $success || $storage->save($section, $key, $value);
         }
         $this->clearCache();
@@ -125,5 +129,17 @@ class Setting extends Component
             }
         }
         return [$section, $key];
+    }
+
+    protected function getStorages($section)
+    {
+        $storages = [];
+        foreach ($this->storages as $name => $storage)
+        {
+            if (!$storage->sections || in_array($section, $storage->sections)) {
+                $storages[$name] = $storage;
+            }
+        }
+        return $storages;
     }
 }

@@ -38,6 +38,14 @@ or
 ```php
 Yii::$app->setting->set('author', 'cszchen <me@csz.link>', 'package');
 ```
+or
+```php
+Yii::$app->setting->setSection('package', [
+    'type' => 'yii2-extension',
+    'license' => 'MIT'
+]);
+Yii::$app->setting->get('package.license');//MIT
+```
 get the setting;  
 ---
 

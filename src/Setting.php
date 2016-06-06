@@ -23,7 +23,7 @@ class Setting extends Component
             }
         }
         if (!$this->storages) {
-            $this->storages['db'] = Yii::createObject(DbStorage::className());
+            $this->storages['file'] = Yii::createObject(FileStorage::className());
         }
     }
 
